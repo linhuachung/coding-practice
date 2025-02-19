@@ -204,7 +204,53 @@ handleNthDigit(7)
 console.log("==========================================================================================================================")
 
 //valid parentheses
-const handleValidParentheses = (str) => {
+function isValid(s) {
+  const stack = [];
 
+  for (let c of s) {
+    if (c === '(' || c === '{' || c === '[') {
+      stack.push(c);
+    } else {
+      if (stack.length === 0) return false;
+
+      const last = stack.pop();
+
+      if (c === ')' && last !== '(') return false;
+      if (c === '}' && last !== '{') return false;
+      if (c === ']' && last !== '[') return false;
+    }
+  }
+
+  return stack.length === 0;
 }
 
+const valid = isValid('()[]{})')
+console.log("this is valid parentheses: ", valid)
+
+console.log("==========================================================================================================================")
+
+//Find the Index of a Target in a Sorted Array
+
+const findIndexOfTarget = (arr, target) => {
+  for (let i = 0; i < arr.length; i ++) {
+    for (let j = i + 1; j < arr.length; j ++) {
+      let temp = arr[i]
+      if (temp > arr[j]) {
+        arr[i] = arr[j]
+        arr[j] = temp
+        temp = arr[i]
+      }
+    }
+  }
+  console.log(arr, target)
+  for (let i = 0; i < arr.length; i ++) {
+    if (arr[i] === target) {
+      target = i
+      return target
+    }
+  }
+  return -1
+}
+
+const indexOfTarget = findIndexOfTarget([2, 1, 6, 4, 5, 3], 1)
+console.log("This is index of target: ", indexOfTarget)
