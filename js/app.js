@@ -254,3 +254,83 @@ const findIndexOfTarget = (arr, target) => {
 
 const indexOfTarget = findIndexOfTarget([2, 1, 6, 4, 5, 3], 1)
 console.log("This is index of target: ", indexOfTarget)
+
+console.log("==========================================================================================================================")
+
+//Prime Number Checker
+
+const primeNumberChecker = (num) => {
+  for (let i = 2; i < num; i ++ ) {
+    if(num % i === 0) {
+      return false
+    }
+  }
+  return true
+}
+
+const isPrime = primeNumberChecker(7)
+console.log("this is prime number: ", isPrime)
+
+console.log("==========================================================================================================================")
+
+//Check for Substring
+// isSubstring("hello", "ell"); // true
+// isSubstring("javascript", "script"); // true
+// isSubstring("frontend", "back"); // false
+
+const isSubstring = (str, sub) => {
+  // return str.includes(sub)
+//   cách khác
+  for (let i = 0; i < str.length - sub.length; i ++) {
+    let match = true
+    for (let j = 0; j < sub.length; j ++) {
+      if(str[i + j] !== sub[j]) {
+        match = false
+        break
+      }
+    }
+    if (match) return true
+  }
+  return false
+}
+
+const isSubstringValid = isSubstring("hello", "ell")
+console.log("This is substring valid: ", isSubstringValid)
+
+console.log("==========================================================================================================================")
+
+//Count Character Occurrences in a String
+// countChar("hello", "l"); // 2
+// countChar("javascript", "a"); // 2
+// countChar("banana", "n"); // 2
+
+const countCharacter = (str, char) => {
+  // let listCharCount = []
+  // for (let i = 0; i < str.length; i ++) {
+  //   if(str[i] === char) {
+  //     listCharCount.push(str[i])
+  //   }
+  // }
+  // return listCharCount.length
+//   cách khác:
+  return str.split('').filter(x => char.includes(x)).length
+}
+
+const count = countCharacter("hello", "l")
+console.log("This is count character: ", count)
+
+console.log("==========================================================================================================================")
+
+//Find the nth Fibonacci Number
+const findNthFibonacciNumber = (n) => {
+  let listFibonacci = [0, 1]
+  if (n === 0) listFibonacci = [0]
+  if (n === 1) listFibonacci = [0, 1]
+
+  for (let i = 2; i <= n; i ++) {
+    listFibonacci.push(listFibonacci[i - 1] + listFibonacci[i - 2])
+  }
+  return listFibonacci
+}
+const listFibonacci = findNthFibonacciNumber(10)
+console.log("This is list fibonacci: ", listFibonacci)
